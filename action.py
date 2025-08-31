@@ -12,8 +12,8 @@ def view_bd():
     usefull.second_call_first_page()
     start_action()
 
-def init_find_player_for_id(idP):
-    interaction_with_Json.person_search(idP)
+def init_find_player(param, for_what):
+    interaction_with_Json.person_search(param, for_what)
     usefull.second_call_first_page()
     start_action()
 
@@ -25,7 +25,7 @@ def start_action():
         view_bd()
     elif select == 2:
         constants.console_cls()
-        init_find_player_for_id(int(input("Enter id: ")))
+        init_find_player(int(input("Enter id: ")), "id")
 
     elif select == 3:
         pass
