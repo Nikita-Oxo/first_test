@@ -1,3 +1,5 @@
+import os
+
 import interaction_with_Json
 import usefull
 import constants
@@ -20,21 +22,26 @@ def init_find_player(param, for_what):
 def start_action():
     select = int(input("Select option: "))
 
-    if select == 1:
+    if select == 1:#Вывести Бд
         constants.console_cls()
         view_bd()
-    elif select == 2:
+    elif select == 2:#Вывести инфо игрока по id
         constants.console_cls()
         init_find_player(int(input("Enter id: ")), "id")
 
-    elif select == 3:
+    elif select == 3:#Добавить игрока
+        constants.console_cls()
+        #interaction_with_Json.add_player(str(input("Nikname: ")), int(input("Score: ")), int(input("level: ")))
+        interaction_with_Json.init_add_new_player()
+        usefull.second_call_first_page()
+        start_action()
+
+    elif select == 4:#Удалить игрока
+        interaction_with_Json.delete_player(int(input("Enter id: ")))
+    elif select == 5:#Поиск игрока по параметрам(todo)
         pass
-    elif select == 4:
-        pass
-    elif select == 5:
-        pass
-    elif select == 6:
-        pass
+    elif select == 6:#Закрыть программу
+        os.close(1)
     else:
         usefull.continue_enter_await("You're make a mistake, press Enter to continue")
         usefull.second_call_first_page()

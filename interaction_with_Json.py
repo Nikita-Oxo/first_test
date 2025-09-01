@@ -100,6 +100,9 @@ def person_search(param, for_what):
                 if data[item]["id"] == param:
                     while True:
                         constants.console_cls()
+                        with open("user_bd.json", 'r') as file:#govnokod dl correct otobrajenia, kaus'
+                            data = json.load(file)  # Data - list, data[0] - dict
+                            file.close()
                         print(data[item])
                         draw_player_menu(constants.get_player_options())
                         if moution_on_player(int(input("Enter choose: ")), for_what, param) == "ex": return #что надо сделать с этим играком значение параметра по которому искали и параметр по которому искали
@@ -113,6 +116,50 @@ def person_search(param, for_what):
                 #здесь появляется новое меню с действиями касаемо именно этого игрока
         #print("No information about player with that id")
         usefull.continue_enter_await("No information about player with that info")
+    except Exception as e:
+        print(e)
+        usefull.continue_enter_await("Something gone wrong, press Enter to continue")
+
+
+
+def init_add_new_player():
+    try:
+        name = str(input("enter Name: "))
+        score = int(input("enter score: "))
+        lvl = int(input("enter level: "))
+
+        with open("user_bd.json", 'r') as file:
+            data = json.load(file)#Data - list, data[0] - dict
+            file.close()
+
+        updatet_data = data+[{"id":int(len(data)+1),
+                              "name": name,
+                              "score": score,
+                              "level": lvl,
+                              "online": False}]
+        with open("user_bd.json", 'w') as file:
+            json.dump(updatet_data, file)
+            file.close()
+        usefull.continue_enter_await("All is good, press Enter to continue")
+    except Exception as e:
+        print(e)
+        usefull.continue_enter_await("Something gone wrong, press Enter to continue")
+
+
+def delete_player(id):
+    try:
+        new_list = []
+        with open("user_bd.json", 'r') as file:
+            data = json.load(file)#Data - list, data[0] - dict
+            file.close()
+        for item in range(len(data)):
+            if data[item]["id"] == id:
+                continue
+            new_list.append(data[item])
+        with open("user_bd.json", 'w') as file:
+            json.dump(new_list, file)
+            file.close()
+        usefull.continue_enter_await("All is good, press Enter to continue")
     except Exception as e:
         print(e)
         usefull.continue_enter_await("Something gone wrong, press Enter to continue")
