@@ -39,7 +39,8 @@ def start_action():
     elif select == 4:#Удалить игрока
         interaction_with_Json.delete_player(int(input("Enter id: ")))
     elif select == 5:#Поиск игрока по параметрам(todo)
-        pass
+        interaction_with_Json.init_find_for_parametrs()
+        usefull.second_call_first_page()
     elif select == 6:#Закрыть программу
         os.close(1)
     else:

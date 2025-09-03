@@ -163,3 +163,18 @@ def delete_player(id):
     except Exception as e:
         print(e)
         usefull.continue_enter_await("Something gone wrong, press Enter to continue")
+
+def init_find_for_parametrs():
+    try:
+        draw_player_menu(constants.get_param_find_options())
+        boof = int(input("Select option: "))
+        if boof == 1:pass
+        elif boof == 2:pass
+        elif boof == 3:pass
+        elif boof == 4:pass
+        elif boof == 5:pass
+        elif boof == 6:
+            return
+    except Exception as e:
+        print(e)
+        usefull.continue_enter_await("Something gone wrong, press Enter to continue")

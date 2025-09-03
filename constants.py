@@ -20,5 +20,14 @@ def get_player_options():
          "5. Выйти из меню"]
     return o
 
+def get_param_find_options():
+    o = ["1. Поиск по имени",
+         "2. Поиск по уровню",
+         "3. Поиск по счету",
+         "4. Просмотр онлайна",
+         "5. Поиск по пересечению параметров",
+         "6. Выйти из меню"]
+    return o
+
 def get_admin_name():
     return input("Hello, what's your name: ")
