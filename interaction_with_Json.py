@@ -171,24 +171,26 @@ def get_params_and_find_player():
         lvl = str(input("enter level: "))
         scr = str(input("enter score: "))
         is_online = str(input("enter online status(1 or 0): "))
-
+        if is_online != "none":
+            if (is_online != 1) and (is_online != 0):
+                is_online = "none"
         with open("user_bd.json", 'r') as file:
             data = json.load(file)#Data - list, data[0] - dict
             file.close()
         for item in range(len(data)):
             boof = int(0)
             #if data[item]["id"] == id:pass
-            if (data[item]["name"] == name) or (name == "none"):
-                print("allis")
+            if (name == "none") or (data[item]["name"] == name):
                 boof = boof+1
-            elif (data[item]["level"] == int(lvl)) or (lvl == "none"):
+            if (lvl == "none") or (data[item]["level"] == int(lvl)):
                 boof = boof+1
-            elif (data[item]["score"] == int(scr)) or (scr == "none"):
+            if (scr == "none") or (data[item]["score"] == int(scr)):
                 boof = boof+1
-            elif (data[item]["online"] == bool(is_online)) or (is_online == "none"):
+            if (is_online == "none") or (data[item]["online"] == bool(is_online)):
                 boof = boof+1
             if boof == 4:
                 print(data[item])
+        return
     except Exception as e:
         print(e)
         usefull.continue_enter_await("Something gone wrong, press Enter to continue")
@@ -197,6 +199,7 @@ def init_find_for_parametrs():
     try:
         constants.console_cls()
         get_params_and_find_player()
+        usefull.continue_enter_await("All is good, press Enter to continue")
     except Exception as e:
         print(e)
         usefull.continue_enter_await("Something gone wrong, press Enter to continue")
